@@ -33,6 +33,7 @@ module.exports = {
         try {
             const updtUser = await User.findByIdAndUpdate(
                 { _id: req.params.userId },
+                { username: req.body.username, email: req.boddy.email },
                 { runValidators: true, new: true });
             res.status(200).json(updtUser);
         } catch (err) {
