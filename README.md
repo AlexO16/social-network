@@ -23,7 +23,7 @@
   Use Insomnia to test Get, Post, Put and Del routes. 
 
   # Links
-  * [Video]()
+  * [Video](https://drive.google.com/file/d/11mmEpUTz6e61fILuRSgwzgouqzNOfkFT/view)
   * [Repository](https://github.com/AlexO16/social-network)
 
   # License
