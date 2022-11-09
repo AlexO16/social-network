@@ -1,4 +1,5 @@
-const Thought = require('../models/Thought')
+const {Thought, Reaction} = require('../models/Thought')
+const {Types} = require('mongoose')
 
 module.exports = {
     //Get all thoughts
@@ -53,9 +54,10 @@ module.exports = {
     //Add reaction
     async addReaction(req, res) {
         try {
+            const reaction = await Reaction.create({...req.body})
             const thought = await Thought.findOneAndUpdate(
                     { _id: req.params.thoughtId },
-                    { $push: { reactions: req.params.reactionId } },
+                    { $push: { reactions: reaction } },
                     { runValidators: true, new: true });
             res.status(200).json(thought);
         } catch (err) {
@@ -67,7 +69,7 @@ module.exports = {
         try {
             const delRxn = await Thought.findOneAndUpdate(
                 { _id: req.params.thoughtId },
-                { $pull: { reactions: req.params.reactionId } },
+                { $pull: { reactions: {_id: Types.ObjectId(req.params.reactionId) }}},
                 { runValidators: true, new: true });
             res.status(200).json(delRxn);
         } catch (err) {
