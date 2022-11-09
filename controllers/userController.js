@@ -13,7 +13,7 @@ module.exports = {
     //Get one user
     async getSingleUser(req, res) {
         try {
-            const user = await User.findOneById({ _id: req.params.userId });
+            const user = await User.findById({ _id: req.params.userId });
             res.status(200).json(user);
         } catch (err) {
             res.status(500).json(err)
@@ -33,7 +33,7 @@ module.exports = {
         try {
             const updtUser = await User.findByIdAndUpdate(
                 { _id: req.params.userId },
-                { username: req.body.username, email: req.boddy.email },
+                { username: req.body.username, email: req.body.email },
                 { runValidators: true, new: true });
             res.status(200).json(updtUser);
         } catch (err) {
