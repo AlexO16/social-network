@@ -33,6 +33,7 @@ module.exports = {
         try {
             const updtThought = await Thought.findByIdAndUpdate(
                 { _id: req.params.thoughtId },
+                { thoughtText: req.body.thoughtText, username: req.body.username},
                 { runValidators: true, new: true });
             res.status(200).json(updtThought);
         } catch (err) {
